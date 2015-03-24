@@ -165,10 +165,10 @@ var aSchema = { properties: { b: { $ref: &#39;bSchema&#39; }}};
 var bSchema = { properties: { a: { $ref: &#39;aSchema&#39; }}};
 tv4.addSchema(&#39;aSchema&#39;, aSchema);
 tv4.addSchema(&#39;bSchema&#39;, bSchema);</code></pre>
-<p>If the <code>checkRecursive</code> argument were missing, this would throw a &quot;too much recursion&quot; error. </p>
-<p>To enable support for this, pass <code>true</code> as additional argument to any of the regular validation methods: </p>
+<p>If the <code>checkRecursive</code> argument were missing, this would throw a &quot;too much recursion&quot; error.</p>
+<p>To enable support for this, pass <code>true</code> as additional argument to any of the regular validation methods:</p>
 <pre><code class="lang-javascript">tv4.validate(a, aSchema, true);
-tv4.validateResult(data, aSchema, true); 
+tv4.validateResult(data, aSchema, true);
 tv4.validateMultiple(data, aSchema, true);</code></pre>
 <h2 id="the-banunknownproperties-flag">The <code>banUnknownProperties</code> flag</h2>
 <p>Sometimes, it is desirable to flag all unknown properties as an error.  This is especially useful during development, to catch typos and the like, even when extra custom-defined properties are allowed.</p>
@@ -193,6 +193,10 @@ tv4.validateMultiple(data, schema, checkRecursive, true);</code></pre>
 <li><code>uri</code> the uri of the schema (may contain a <code>#</code> fragment)</li>
 </ul>
 <pre><code class="lang-js">var schema = tv4.getSchema(&#39;http://example.com/schema&#39;);</code></pre>
+<h5 id="getdereferencedschema-uri-schema-">getDereferencedSchema(uri/schema)</h5>
+<p>Returns a fully dereferenced schema. All <code>$ref</code>s are resolved if they are already registered in tv4 using <code>addSchema()</code>.</p>
+<p>Can accept the uri of a schema already registered in tv4 or a schema that references schemas already registered in tv4.</p>
+<pre><code class="lang-js">var schema = tv4.getDereferencedSchema(&#39;http://example.com/schema&#39;);</code></pre>
 <h5 id="getschemamap-">getSchemaMap()</h5>
 <p>Return a shallow copy of the schema cache, mapping schema document URIs to schema objects.</p>
 <pre><code>var map = tv4.getSchemaMap();
