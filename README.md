@@ -150,6 +150,16 @@ Return a schema from the cache.
 var schema = tv4.getSchema('http://example.com/schema');
 ````
 
+##### getDereferencedSchema(uri/schema)
+
+Returns a fully dereferenced schema. All `$ref`s are resolved if they are already registered in tv4 using `addSchema()`.
+
+Can accept the uri of a schema already registered in tv4 or a schema that references schemas already registered in tv4.
+
+```js
+var schema = tv4.getDereferencedSchema('http://example.com/schema');
+```
+
 ##### getSchemaMap()
 
 Return a shallow copy of the schema cache, mapping schema document URIs to schema objects.
